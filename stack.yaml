@@ -1,0 +1,9 @@
+resolver: lts-6.24
+
+packages:
+  - ./
+  - ./xmonad/
+  - ./xmonad-contrib/
+
+extra-deps:
+  - X11-xft-0.3.1
