@@ -3,7 +3,7 @@
 This repository is useful for testing new features introduced into
 [XMonad][] (and xmonad-contrib) as well as troubleshooting
 new/existing configurations.  It is also an example of how to build
-your own XMonad using [stack][].
+your own XMonad using [stack][] or [cabal][].
 
 ## Building All Dependencies with a Specific Configuration File
 
@@ -11,6 +11,10 @@ Using [stack][], building everything is quite easy:
 
     $ stack setup
     $ stack build
+
+Using a recent enough [cabal][], building everything is even easier:
+
+    $ cabal new-build
 
 If you'd like to change which configuration file is being used for the
 build, just replace `config.hs` with your own file.
@@ -28,4 +32,5 @@ XMonad in another xorg session using [Xephyr][]:
 
 [xmonad]: http://xmonad.org/
 [stack]: https://docs.haskellstack.org/en/stable/README/
+[cabal]: http://cabal.readthedocs.io/en/latest/nix-local-build-overview.html
 [xephyr]: https://www.freedesktop.org/wiki/Software/Xephyr/
