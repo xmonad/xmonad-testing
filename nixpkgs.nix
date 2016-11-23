@@ -5,9 +5,10 @@ stdenv.mkDerivation {
 
   buildInputs = [
     # GHC:
-    haskell.packages.lts-6_7.ghc
+    haskell.packages.ghc7103.ghc
 
     # Non-Haskell Dependencies:
+    autoconf
     pkgconfig
     xorg.libX11
     xorg.libXext

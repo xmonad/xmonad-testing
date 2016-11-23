@@ -1,1 +1,1 @@
-xmonad/Main.hs
+configs/issues/009-colormap.hs
