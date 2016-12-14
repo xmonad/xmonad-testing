@@ -2,6 +2,7 @@ resolver: lts-6.24
 
 packages:
   - ./
+  - ./x11/
   - ./xmonad/
   - ./xmonad-contrib/
 

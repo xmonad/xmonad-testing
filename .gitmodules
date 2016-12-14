@@ -4,3 +4,9 @@
 [submodule "xmonad-contrib"]
 	path = xmonad-contrib
 	url = https://github.com/xmonad/xmonad-contrib
+[submodule "x11"]
+	path = x11
+	url = https://github.com/xmonad/X11.git
+[submodule "multi-ghc-travis"]
+	path = multi-ghc-travis
+	url = https://github.com/hvr/multi-ghc-travis.git
