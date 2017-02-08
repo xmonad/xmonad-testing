@@ -4,3 +4,6 @@
 [submodule "xmonad-contrib"]
 	path = xmonad-contrib
 	url = https://github.com/xmonad/xmonad-contrib
+[submodule "x11"]
+	path = x11
+	url = https://github.com/xmonad/X11.git

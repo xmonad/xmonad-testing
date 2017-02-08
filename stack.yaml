@@ -1,4 +1,7 @@
-resolver: lts-6.24
+resolver: lts-6.25
+
+# nix:
+#   shell-file: nixpkgs.nix
 
 packages:
   - ./
@@ -7,3 +10,4 @@ packages:
 
 extra-deps:
   - X11-xft-0.3.1
+  - directory-1.2.7.1
