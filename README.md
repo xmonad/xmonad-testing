@@ -11,13 +11,17 @@ Starting with XMonad 0.13 you can customize how your configuration
 file is compiled.  Want to use [stack][]?  How about [cabal][]?  No
 problem!  Here's what you do:
 
-  1. Set up a directory with your source code and a way to build it.
-     Most solutions require that you have a `*.cabal` file.  If you
-     need inspiration you can use the `xmonad-testing.cabal` file from
-     this repository.
+  1. Set up a directory (or use `~/.xmonad`) where your source code
+     can live.  Most build tools require that you also have a
+     `*.cabal` file.  If you need inspiration you can use the
+     `xmonad-testing.cabal` file from this repository.
+
+     Need a good default configuration file?  Try `example-config.hs`.
 
   2. Create an executable file named `~/.xmonad/build`.  Use your
-     favorite scripting language or shell flavor to build source code.
+     favorite scripting language or shell flavor to execute your
+     preferred build tool.  (Don't for get to `chmod +x`, it needs to
+     be executable.)
 
      When called, the `build` script will be given a single
      command-line argument, the name of the output file it should
@@ -25,9 +29,10 @@ problem!  Here's what you do:
      your source code.
 
      There are example scripts in the `build-scripts` directory of
-     this repository.
+     this repository that show how to use either stack and cabal to
+     build your source code.
 
-Now, when you run `xmonad --recompile`, XMonad will use your build
+Now, when you run `xmonad --recompile` XMonad will use your build
 script instead of using GHC directly.
 
 NOTE: Keep in mind that if you are using a `build` script XMonad might
