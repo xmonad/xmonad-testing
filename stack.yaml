@@ -1,7 +1,4 @@
-resolver: lts-6.25
-
-# nix:
-#   shell-file: nixpkgs.nix
+resolver: lts-7.19
 
 packages:
   - ./

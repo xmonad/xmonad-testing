@@ -5,7 +5,7 @@ stdenv.mkDerivation {
 
   buildInputs = [
     # GHC:
-    haskell.packages.ghc7103.ghc
+    haskell.packages.ghc801.ghc
 
     # Non-Haskell Dependencies:
     pkgconfig
@@ -17,10 +17,15 @@ stdenv.mkDerivation {
     xorg.libXpm
     xorg.libXrandr
     xorg.libXrender
+
+    gnupg # sign tags and releases
   ];
 
   shellHook = ''
     # Generate the configure script in X11:
-    ( cd x11 && autoreconf -f )
+    ( test -d x11 && cd x11 && autoreconf -f )
+
+    # Make stack happy:
+    export GPG_TTY=`tty`
   '';
 }
