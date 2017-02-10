@@ -5,15 +5,22 @@ stdenv.mkDerivation {
 
   buildInputs = [
     # GHC:
-    haskell.packages.lts-6_7.ghc
+    haskell.packages.ghc7103.ghc
 
     # Non-Haskell Dependencies:
     pkgconfig
+    autoconf
     xorg.libX11
     xorg.libXext
+    xorg.libXft
     xorg.libXinerama
+    xorg.libXpm
     xorg.libXrandr
     xorg.libXrender
-    xorg.libXft
   ];
+
+  shellHook = ''
+    # Generate the configure script in X11:
+    ( cd x11 && autoreconf -f )
+  '';
 }

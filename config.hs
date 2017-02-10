@@ -1,1 +1,1 @@
-xmonad/Main.hs
+example-config.hs

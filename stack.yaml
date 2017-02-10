@@ -7,7 +7,9 @@ packages:
   - ./
   - ./xmonad/
   - ./xmonad-contrib/
+  - ./x11
 
 extra-deps:
   - X11-xft-0.3.1
   - directory-1.2.7.1
+  - xmobar-0.24.3

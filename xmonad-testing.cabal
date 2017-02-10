@@ -1,13 +1,13 @@
 ------------------------------------------------------------------------------
 name:          xmonad-testing
-version:       0.2.0.0
+version:       0.13
 synopsis:      XMonad Testing Repository
 homepage:      http://xmonad.org
 license:       BSD2
 license-file:  LICENSE
 author:        Peter Jones <pjones@devalot.com>
 maintainer:    Peter Jones <pjones@devalot.com>
-copyright:     Copyright (c) 2016 Peter J. Jones
+copyright:     Copyright (c) 2016,2017 Peter J. Jones
 category:      Graphics
 build-type:    Simple
 cabal-version: >=1.8
@@ -15,8 +15,5 @@ cabal-version: >=1.8
 ------------------------------------------------------------------------------
 executable xmonad-testing
   main-is: config.hs
-  ghc-options: -Wall -Werror
-  build-depends: base
-               , xmonad
-               , xmonad-contrib
-
+  ghc-options: -Wall -Werror -fno-warn-missing-signatures
+  build-depends: base, xmonad, xmonad-contrib
