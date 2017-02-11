@@ -16,14 +16,13 @@ main = do
   -- Start xmonad using the main desktop configuration with a few
   -- simple overrides:
   xmonad $ desktopConfig
-    { terminal   = "xterm"
+    { modMask    = mod4Mask -- Use the "Win" key for the mod key
     , manageHook = myManageHook <+> manageHook desktopConfig
     , logHook    = dynamicLogString def >>= xmonadPropLog
     }
 
     `additionalKeysP` -- Add some extra key bindings:
       [ ("M-S-q", confirmPrompt myXPConfig "exit" (io exitSuccess))
-      , ("M-q",   spawn "xmonad --recompile && xmonad --restart")
       , ("M-p",   shellPrompt myXPConfig)
       ]
 
