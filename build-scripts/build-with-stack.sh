@@ -20,4 +20,4 @@ output_file=$1; shift
 ################################################################################
 cd $SRC_DIR
 stack build
-cp `stack path --dist-dir`/build/$EXE_NAME/$EXE_NAME $output_file
+mv -u `stack path --dist-dir`/build/$EXE_NAME/$EXE_NAME $output_file

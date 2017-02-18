@@ -28,4 +28,4 @@ cabal configure --enable-optimization \
 cabal install --only-dependencies
 cabal build
 
-cp dist/build/$EXE_NAME/$EXE_NAME $output_file
+mv -u dist/build/$EXE_NAME/$EXE_NAME $output_file
