@@ -20,7 +20,7 @@ problem!  Here's what you do:
 
   2. Create an executable file named `~/.xmonad/build`.  Use your
      favorite scripting language or shell flavor to execute your
-     preferred build tool.  (Don't for get to `chmod +x`, it needs to
+     preferred build tool.  (Don't forget to `chmod +x`, it needs to
      be executable.)
 
      When called, the `build` script will be given a single
