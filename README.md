@@ -66,7 +66,7 @@ Build XMonad with your configuration file of choice using the
 direction above and then use the following script to run your custom
 XMonad in another xorg session using [Xephyr][]:
 
-    $ bin/run-in-xephyr.sh
+    $ bin/run-in-xephyr.sh -h
 
 ### Testing Someone Else's Pull Request
 
