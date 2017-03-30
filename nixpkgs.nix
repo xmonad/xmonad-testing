@@ -1,11 +1,16 @@
 with (import <nixpkgs> {});
 
+let ghc = haskell.packages.ghc802;
+in
 stdenv.mkDerivation {
   name = "xmonad-testing";
 
   buildInputs = [
-    # GHC:
-    haskell.packages.ghc801.ghc
+    # GHC and friends:
+    (ghc.ghcWithPackages (p: with p; [
+      cabal-install
+      packdeps
+    ]))
 
     # Non-Haskell Dependencies:
     pkgconfig
@@ -19,6 +24,7 @@ stdenv.mkDerivation {
     xorg.libXrender
 
     gnupg # sign tags and releases
+    rsync # Needed by xmonad-web/gen-docs.sh
   ];
 
   shellHook = ''
