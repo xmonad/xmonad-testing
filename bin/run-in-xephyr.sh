@@ -71,15 +71,19 @@ echo "xmonad will store state files in "`pwd`/state
 ################################################################################
 SCREEN_COUNTER=0
 SCREEN_OPTS=""
+X_OFFSET_CURRENT="0"
+X_OFFSET_ADD=`echo $SCREEN_SIZE | cut -dx -f1`
 
 while expr $SCREEN_COUNTER "<" $SCREENS; do
-  SCREEN_OPTS="$SCREEN_OPTS -screen $SCREEN_SIZE"
+  SCREEN_OPTS="$SCREEN_OPTS -origin ${X_OFFSET_CURRENT},0 -screen ${SCREEN_SIZE}+${X_OFFSET_CURRENT}"
   SCREEN_COUNTER=`expr $SCREEN_COUNTER + 1`
+  X_OFFSET_CURRENT=`expr $X_OFFSET_CURRENT + $X_OFFSET_ADD`
 done
 
 (
   Xephyr $SCREEN_OPTS +xinerama +extension RANDR \
-         -ac -br -terminate :$DISPLAY_NUMBER &
+         -ac -br -reset -terminate -verbosity 10 \
+         -softCursor :$DISPLAY_NUMBER &
 
   export DISPLAY=:$DISPLAY_NUMBER
   echo "Waiting for windows to appear..." && sleep 2
