@@ -45,12 +45,19 @@ since the last time it was compiled.
 
 ### Building All Dependencies with a Specific Configuration File
 
-Using [stack][], building everything is quite easy:
+When using either [stack][] or [cabal][], the [X11][] package needs to be
+configured first:
+
+    $ cd x11
+    $ autoreconf
+    $ cd ..
+
+If using [stack][], building everything is quite easy:
 
     $ stack setup
     $ stack build
 
-Using a recent enough [cabal][], building everything is even easier:
+If using a recent enough [cabal][], building everything is even easier:
 
     $ cabal new-build
 
@@ -117,3 +124,4 @@ XMonad in another xorg session using [Xephyr][]:
 [stack]: https://docs.haskellstack.org/en/stable/README/
 [cabal]: http://cabal.readthedocs.io/en/latest/nix-local-build-overview.html
 [xephyr]: https://www.freedesktop.org/wiki/Software/Xephyr/
+[X11]: https://github.com/xmonad/X11
