@@ -46,7 +46,9 @@ shift $((OPTIND-1))
 ################################################################################
 if [ -d .stack-work ]; then
   echo "stack build detected"
-  BIN_PATH=`stack path --dist-dir`/build/xmonad-testing
+  options=""
+  [ -n "$NIX_PATH" ] && options="--nix"
+  BIN_PATH=`stack path $options --dist-dir`/build/xmonad-testing
 elif [ -d dist-newstyle ]; then
   echo "cabal build detected"
   BIN_PATH=`find dist-newstyle/ -type f -executable -name xmonad-testing -printf '%h'`

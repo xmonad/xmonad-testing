@@ -1,1 +1,1 @@
-example-config.hs
+xmonad-contrib/XMonad/Config/Example.hs
