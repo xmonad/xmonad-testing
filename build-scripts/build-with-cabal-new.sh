@@ -27,4 +27,4 @@ cabal new-configure \
 cabal new-build
 
 find dist-newstyle -type f -executable -name $EXE_NAME \
-     -exec mv -u '{}' $output_file ';'
+     -exec cp -uf '{}' $output_file ';'
