@@ -78,10 +78,10 @@ XMonad in another xorg session using [Xephyr][]:
 ### Testing Someone Else's Pull Request
 
   1. Clone this repository:
-
-        $ git clone --recursive https://github.com/xmonad/xmonad-testing.git
-        $ cd xmonad-testing
-
+```
+$ git clone --recursive https://github.com/xmonad/xmonad-testing.git
+$ cd xmonad-testing
+```
   2. Bring in the changes from the pull request:
 
      For this example we will use an example pull request for
@@ -99,12 +99,12 @@ XMonad in another xorg session using [Xephyr][]:
      and copy the URL or use whatever support your browser gives you
      for copying the URL of a link.  Below I will refer to the URL for
      *REPO* as *REPO_URL*.
-
-        $ cd xmonad-contrib
-        $ git checkout -b BRANCH master
-        $ git pull REPO_URL BRANCH
-        $ cd ..
-
+```
+$ cd xmonad-contrib
+$ git checkout -b BRANCH master
+$ git pull REPO_URL BRANCH
+$ cd ..
+```
   3. Create a configuration file that will test the changes in the
      pull request.  Ideally you will create a config file in the
      `configs` directory and symlink it to `config.hs`.  The only
