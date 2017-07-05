@@ -13,8 +13,8 @@ EOF
 }
 
 ################################################################################
-ARCH=`uname -m`
-OS=`uname -s | tr '[A-Z]' '[a-z]'`
+ARCH=$(uname -m)
+OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 SCREENS=1
 SCREEN_SIZE="800x600"
 DISPLAY_NUMBER=5
@@ -47,11 +47,11 @@ shift $((OPTIND-1))
 if [ -d .stack-work ]; then
   echo "stack build detected"
   options=""
-  [ -n "$NIX_PATH" ] && options="--nix"
-  BIN_PATH=`stack path $options --dist-dir`/build/xmonad-testing
+  [ "${NIX_PATH:-NO}" = "NO" ] || options="--nix"
+  BIN_PATH=$(stack path $options --dist-dir)/build/xmonad-testing
 elif [ -d dist-newstyle ]; then
   echo "cabal build detected"
-  BIN_PATH=`find dist-newstyle/ -type f -executable -name xmonad-testing -printf '%h'`
+  BIN_PATH=$(find dist-newstyle/ -type f -executable -name xmonad-testing -printf '%h')
 else
   echo "you need to build xmonad-testing first, see README for instructions"
   exit 1
@@ -61,33 +61,36 @@ RAW_BIN=$BIN_PATH/xmonad-testing
 ARCH_BIN=$BIN_PATH/xmonad-$ARCH-$OS
 
 ################################################################################
-cp -p $RAW_BIN $ARCH_BIN
+cp -p "$RAW_BIN" "$ARCH_BIN"
 
 ################################################################################
-export XMONAD_CONFIG_DIR=`pwd`/state/config
-export XMONAD_CACHE_DIR=`pwd`/state/cache
-export XMONAD_DATA_DIR=`pwd`/state/data
-mkdir -p $XMONAD_CONFIG_DIR $XMONAD_CACHE_DIR $XMONAD_DATA_DIR
-echo "xmonad will store state files in "`pwd`/state
+XMONAD_CONFIG_DIR=$(pwd)/state/config
+XMONAD_CACHE_DIR=$(pwd)/state/cache
+XMONAD_DATA_DIR=$(pwd)/state/data
+export XMONAD_CONFIG_DIR XMONAD_CACHE_DIR XMONAD_DATA_DIR
+
+mkdir -p "$XMONAD_CONFIG_DIR" "$XMONAD_CACHE_DIR" "$XMONAD_DATA_DIR"
+echo "xmonad will store state files in $(pwd)/state"
 
 ################################################################################
 SCREEN_COUNTER=0
 SCREEN_OPTS=""
 X_OFFSET_CURRENT="0"
-X_OFFSET_ADD=`echo $SCREEN_SIZE | cut -dx -f1`
+X_OFFSET_ADD=$(echo "$SCREEN_SIZE" | cut -dx -f1)
 
-while expr $SCREEN_COUNTER "<" $SCREENS; do
+while expr "$SCREEN_COUNTER" "<" "$SCREENS"; do
   SCREEN_OPTS="$SCREEN_OPTS -origin ${X_OFFSET_CURRENT},0 -screen ${SCREEN_SIZE}+${X_OFFSET_CURRENT}"
-  SCREEN_COUNTER=`expr $SCREEN_COUNTER + 1`
-  X_OFFSET_CURRENT=`expr $X_OFFSET_CURRENT + $X_OFFSET_ADD`
+  SCREEN_COUNTER=$(("$SCREEN_COUNTER" + 1))
+  X_OFFSET_CURRENT=$(("$X_OFFSET_CURRENT" + "$X_OFFSET_ADD"))
 done
 
 (
+  # shellcheck disable=SC2086
   Xephyr $SCREEN_OPTS +xinerama +extension RANDR \
          -ac -br -reset -terminate -verbosity 10 \
-         -softCursor :$DISPLAY_NUMBER &
+         -softCursor ":$DISPLAY_NUMBER" &
 
-  export DISPLAY=:$DISPLAY_NUMBER
+  export DISPLAY=":$DISPLAY_NUMBER"
   echo "Waiting for windows to appear..." && sleep 2
 
   xterm -hold xrandr &
