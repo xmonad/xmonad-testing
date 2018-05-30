@@ -1,4 +1,4 @@
-resolver: lts-8.6
+resolver: lts-11.8
 
 nix:
   enable: false
@@ -13,5 +13,3 @@ packages:
 
 extra-deps:
   - X11-xft-0.3.1
-  - directory-1.2.7.1
-  - xmobar-0.24.3
