@@ -11,17 +11,17 @@ Starting with XMonad 0.13 you can customize how your configuration
 file is compiled.  Want to use [stack][]?  How about [cabal][]?  No
 problem!  Here's what you do:
 
-  1. Set up a directory (or use `~/.xmonad`) where your source code
-     can live.  Most build tools require that you also have a
-     `*.cabal` file.  If you need inspiration you can use the
-     `xmonad-testing.cabal` file from this repository.
+  1. Set up a directory (or use `~/.config/xmonad` or `~/.xmonad`)
+     where your source code can live.  Most build tools require that
+     you also have a `*.cabal` file.  If you need inspiration you
+     can use the `xmonad-testing.cabal` file from this repository.
 
      Need a good default configuration file?  Try `example-config.hs`.
 
-  2. Create an executable file named `~/.xmonad/build`.  Use your
-     favorite scripting language or shell flavor to execute your
-     preferred build tool.  (Don't forget to `chmod +x`, it needs to
-     be executable.)
+  2. Create an executable file named `build` in the directory you
+     chose in step 1.  Use your favorite scripting language or shell
+     flavor to execute your preferred build tool.  (Don't forget to
+     `chmod +x`, it needs to be executable.)
 
      When called, the `build` script will be given a single
      command-line argument, the name of the output file it should
@@ -37,9 +37,10 @@ script instead of using GHC directly.
 
 NOTE: Keep in mind that if you are using a `build` script XMonad might
 take longer to start.  This is because XMonad invokes your script when
-it starts and needs to wait for it to finish.  You may want to
-consider exiting the script early if the source code hasn't changed
-since the last time it was compiled.
+it starts and needs to wait for it to finish, and it can't test for
+recompilation needed because it doesn't know what your `build` script
+will do.  You may want to consider exiting the script early if the
+source code hasn't changed since the last time it was compiled.
 
 ## Testing Contributions and Configs
 
@@ -59,7 +60,7 @@ If using [stack][], building everything is quite easy:
 
 If using a recent enough [cabal][], building everything is even easier:
 
-    $ cabal new-build
+    $ cabal build
 
 If you'd like to change which configuration file is being used for the
 build, just replace `config.hs` with your own file.
